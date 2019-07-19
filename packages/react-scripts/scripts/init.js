@@ -173,6 +173,61 @@ module.exports = function(
     }
   }
 
+  // .babelrc
+  try {
+    fs.moveSync(
+      path.join(appPath, 'babelrc'),
+      path.join(appPath, '.babelrc'),
+      []
+    );
+  } catch (err) {
+    // Append if there's already a `.babelrc` file there
+    if (err.code === 'EEXIST') {
+      const data = fs.readFileSync(path.join(appPath, 'babelrc'));
+      fs.appendFileSync(path.join(appPath, '.babelrc'), data);
+      fs.unlinkSync(path.join(appPath, 'babelrc'));
+    } else {
+      throw err;
+    }
+  }
+
+  // .eslintrc.json
+  try {
+    fs.moveSync(
+      path.join(appPath, 'eslintrc.json'),
+      path.join(appPath, '.eslintrc.json'),
+      []
+    );
+  } catch (err) {
+    // Append if there's already a `.eslintrc.json` file there
+    if (err.code === 'EEXIST') {
+      const data = fs.readFileSync(path.join(appPath, 'eslintrc.json'));
+      fs.appendFileSync(path.join(appPath, '.eslintrc.json'), data);
+      fs.unlinkSync(path.join(appPath, 'eslintrc.json'));
+    } else {
+      throw err;
+    }
+  }
+
+  // .eslintignore
+  try {
+    fs.moveSync(
+      path.join(appPath, 'eslintignore'),
+      path.join(appPath, '.eslintignore'),
+      []
+    );
+  } catch (err) {
+    // Append if there's already a `.eslintignore` file there
+    if (err.code === 'EEXIST') {
+      const data = fs.readFileSync(path.join(appPath, 'eslintignore'));
+      fs.appendFileSync(path.join(appPath, '.eslintignore'), data);
+      fs.unlinkSync(path.join(appPath, 'eslintignore'));
+    } else {
+      throw err;
+    }
+  }
+
+
   let command;
   let args;
 
