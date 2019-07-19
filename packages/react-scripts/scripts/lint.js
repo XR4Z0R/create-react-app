@@ -37,7 +37,7 @@ const CLIEngine = require('eslint').CLIEngine;
 
 const cli = new CLIEngine();
 
-const report = cli.executeOnFiles("/src/**/*.{js,jsx}");
+const report = cli.executeOnFiles("src/**/*.{js,jsx}");
 
 const formatter = cli.getFormatter();
 
