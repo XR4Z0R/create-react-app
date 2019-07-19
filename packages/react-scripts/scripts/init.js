@@ -98,13 +98,14 @@ module.exports = function(
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test',
+    lint: 'react-scripts lint',
     eject: 'react-scripts eject',
   };
 
   // Setup the eslint config
-  appPackage.eslintConfig = {
-    extends: 'react-app',
-  };
+  // appPackage.eslintConfig = {
+  //   extends: 'react-app',
+  // };
 
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;
@@ -149,6 +150,24 @@ module.exports = function(
       const data = fs.readFileSync(path.join(appPath, 'gitignore'));
       fs.appendFileSync(path.join(appPath, '.gitignore'), data);
       fs.unlinkSync(path.join(appPath, 'gitignore'));
+    } else {
+      throw err;
+    }
+  }
+
+  // .gitattributes
+  try {
+    fs.moveSync(
+      path.join(appPath, 'gitattributes'),
+      path.join(appPath, '.gitattributes'),
+      []
+    );
+  } catch (err) {
+    // Append if there's already a `.gitattributes` file there
+    if (err.code === 'EEXIST') {
+      const data = fs.readFileSync(path.join(appPath, 'gitattributes'));
+      fs.appendFileSync(path.join(appPath, '.gitattributes'), data);
+      fs.unlinkSync(path.join(appPath, 'gitattributes'));
     } else {
       throw err;
     }
@@ -231,6 +250,9 @@ module.exports = function(
   console.log();
   console.log(chalk.cyan(`  ${displayedCommand} test`));
   console.log('    Starts the test runner.');
+  console.log();
+  console.log(chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}lint`));
+  console.log('    Starts linting with defined ESLint rules.');
   console.log();
   console.log(
     chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}eject`)

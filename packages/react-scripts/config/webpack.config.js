@@ -33,7 +33,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-const eslint = require('eslint');
+// const eslint = require('eslint');
 // @remove-on-eject-begin
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 // @remove-on-eject-end
@@ -428,6 +428,21 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+                  [
+                    require.resolve("babel-plugin-module-resolver"),
+                    {
+                      root: ["./src"],
+                      alias: {
+                          assets: "./src/assets",
+                          lang: "./src/lang",
+                          api: "./src/api",
+                          basics: "./src/components/basics",
+                          enums: "./src/enums",
+                          redux: "./src/redux",
+                          styles: "./src/styles",
+                          utils: "./src/utils"
+                    }
+                }]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/

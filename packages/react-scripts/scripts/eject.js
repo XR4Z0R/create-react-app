@@ -230,21 +230,25 @@ inquirer
     console.log(cyan('Configuring package.json'));
     // Add Jest config
     console.log(`  Adding ${cyan('Jest')} configuration`);
-    appPackage.jest = jestConfig;
+    // appPackage.jest = jestConfig;
+    fs.writeFileSync(
+      path.join(appPath, 'jest.config.js'),
+      "module.exports = " + JSON.stringify(jestConfig, null, 4) + os.EOL
+    );
 
-    // Add Babel config
-    console.log(`  Adding ${cyan('Babel')} preset`);
-    appPackage.babel = {
-      presets: ['react-app'],
-    };
+    // // Add Babel config
+    // console.log(`  Adding ${cyan('Babel')} preset`);
+    // appPackage.babel = {
+    //   presets: ['react-app'],
+    // };
 
-    // Add ESlint config
-    if (!appPackage.eslintConfig) {
-      console.log(`  Adding ${cyan('ESLint')} configuration`);
-      appPackage.eslintConfig = {
-        extends: 'react-app',
-      };
-    }
+    // // Add ESlint config
+    // if (!appPackage.eslintConfig) {
+    //   console.log(`  Adding ${cyan('ESLint')} configuration`);
+    //   appPackage.eslintConfig = {
+    //     extends: 'react-app',
+    //   };
+    // }
 
     fs.writeFileSync(
       path.join(appPath, 'package.json'),
