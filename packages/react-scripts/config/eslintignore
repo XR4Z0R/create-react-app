@@ -1,0 +1,4 @@
+*.config.js
+public/
+build/
+serviceworker.js

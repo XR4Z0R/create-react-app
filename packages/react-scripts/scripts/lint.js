@@ -33,9 +33,14 @@ const verifyTypeScriptSetup = require('./utils/verifyTypeScriptSetup');
 verifyTypeScriptSetup();
 // @remove-on-eject-end
 
+const configFile = require("../config/eslintrc");
+
 const CLIEngine = require('eslint').CLIEngine;
 
-const cli = new CLIEngine();
+const cli = new CLIEngine({
+  configFile,
+  ignorePath: "../config/eslintignore"
+});
 
 const report = cli.executeOnFiles("src/**/*.{js,jsx}");
 
