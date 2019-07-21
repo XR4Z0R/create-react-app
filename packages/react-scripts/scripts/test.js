@@ -135,4 +135,6 @@ if (!resolvedEnv) {
 const testEnvironment = resolvedEnv || env;
 argv.push('--env', testEnvironment);
 // @remove-on-eject-end
+argv.push("--coverage");
+
 jest.run(argv);
