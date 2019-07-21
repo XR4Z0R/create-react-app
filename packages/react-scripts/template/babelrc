@@ -12,6 +12,7 @@
                     "@lang": "./src/lang",
                     "#api": "./src/api",
                     "#basics": "./src/components/basics",
+                    "#components": "./src/components",
                     "#enums": "./src/enums",
                     "#redux": "./src/redux",
                     "#styles": "./src/styles",

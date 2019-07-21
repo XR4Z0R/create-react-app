@@ -1,6 +1,8 @@
 {
     "env": {
-        "es6": true
+        "es6": true,
+        "jest": true,
+        "browser": true
     },
     "extends": [
         "eslint:recommended",
@@ -21,6 +23,7 @@
     "plugins": [
         "babel",
         "import",
+        "jest",
         "jsx-a11y",
         "module-resolver",
         "react"
@@ -662,16 +665,16 @@
                 "noUselessIndex": true
             }
         ],
-        "import/no-relative-parent-imports": [
-            "error"
-        ],
-        "import/no-unused-modules": [
-            "error",
-            {
-                "missingExports": false,
-                "unusedExports": true
-            }
-        ],
+        // "import/no-relative-parent-imports": [
+        //     "error"
+        // ],
+        // "import/no-unused-modules": [
+        //     "error",
+        //     {
+        //         "missingExports": false,
+        //         "unusedExports": true
+        //     }
+        // ],
         "import/export": [
             "error"
         ],
@@ -706,7 +709,8 @@
                 "json": "always",
                 "png": "always",
                 "jpg": "always",
-                "svg": "always"
+                "svg": "always",
+                "css": "always"
             }
         ],
         "import/order": [
@@ -745,6 +749,103 @@
             "error"
         ],
         "import/dynamic-import-chunkname": [
+            "error"
+        ],
+        "jest/consistent-test-it": [
+            "error",
+            {
+                "fn": "test",
+                "withinDescribe": "test"
+            }
+        ],
+        "jest/expect-expect": [
+            "error"
+        ],
+        "jest/lowercase-name": [
+            "error"
+        ],
+        "jest/no-alias-methods": [
+            "error"
+        ],
+        "jest/no-disabled-tests": [
+            "error"
+        ],
+        "jest/no-commented-out-tests": [
+            "error"
+        ],
+        "jest/no-empty-title": [
+            "error"
+        ],
+        "jest/no-focused-tests": [
+            "error"
+        ],
+        "jest/no-identical-title": [
+            "error"
+        ],
+        "jest/no-jasmine-globals": [
+            "error"
+        ],
+        "jest/no-jest-import": [
+            "error"
+        ],
+        "jest/no-mocks-import": [
+            "error"
+        ],
+        "jest/no-large-snapshots": [
+            "error",
+            {
+                "maxSize": 100
+            }
+        ],
+        "jest/no-test-callback": [
+            "error"
+        ],
+        "jest/no-test-prefixes": [
+            "error"
+        ],
+        "jest/no-test-return-statement": [
+            "error"
+        ],
+        "jest/no-truthy-falsy": [
+            "error"
+        ],
+        "jest/prefer-expect-assertions": [
+            "error"
+        ],
+        "jest/prefer-spy-on": [
+            "error"
+        ],
+        "jest/prefer-strict-equal": [
+            "error"
+        ],
+        "jest/prefer-to-be-null": [
+            "error"
+        ],
+        "jest/prefer-to-be-undefined": [
+            "error"
+        ],
+        "jest/prefer-to-contain": [
+            "error"
+        ],
+        "jest/prefer-to-have-length": [
+            "error"
+        ],
+        "jest/require-tothrow-message": [
+            "error"
+        ],
+        "jest/valid-describe": [
+            "error"
+        ],
+        "jest/valid-expect-in-promise": [
+            "error"
+        ],
+        "jest/valid-expect": [
+            "error"
+        ],
+        "jest/prefer-todo": [
+            "error"
+        ],
+        "jest/prefer-called-with": [
             "error"
         ],
         "module-resolver/use-alias": [

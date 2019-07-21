@@ -29,7 +29,8 @@ module.exports = (resolve, rootDir, isEjecting) => {
     collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
     coverageDirectory: "coverage",
     coveragePathIgnorePatterns: [
-      "/node_modules/"
+      "/node_modules/",
+      "src/index.{js,jsx,ts,tsx}"
     ],
     coverageThreshold: {
       global: {
@@ -72,6 +73,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
       "^@lang(.*)$": "<rootDir>/src/lang$1",
       "^#api(.*)$": "<rootDir>/src/api$1",
       "^#basics(.*)$": "<rootDir>/src/components/basics$1",
+      "^#components(.*)$": "<rootDir>/src/components$1",
       "^#enums(.*)$": "<rootDir>/src/enums$1",
       "^#redux(.*)$": "<rootDir>/src/redux$1",
       "^#styles(.*)$": "<rootDir>/src/styles$1",

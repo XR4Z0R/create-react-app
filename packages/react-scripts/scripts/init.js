@@ -98,6 +98,7 @@ module.exports = function(
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test',
+    "test-cov": "react-scripts test \"--coverage\"",
     lint: 'react-scripts lint',
     eject: 'react-scripts eject',
   };
