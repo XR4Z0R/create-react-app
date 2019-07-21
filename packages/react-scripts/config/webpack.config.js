@@ -396,9 +396,9 @@ module.exports = function(webpackEnv) {
                   'babel-preset-react-app/webpack-overrides'
                 ),
                 // @remove-on-eject-begin
-                babelrc: false,
-                configFile: false,
-                presets: [require.resolve('babel-preset-react-app')],
+                // babelrc: false,
+                // configFile: false,
+                // presets: [require.resolve('babel-preset-react-app')],
                 // Make sure we have a unique cache identifier, erring on the
                 // side of caution.
                 // We remove this when the user ejects because the default
@@ -416,34 +416,19 @@ module.exports = function(webpackEnv) {
                   ]
                 ),
                 // @remove-on-eject-end
-                plugins: [
-                  [
-                    require.resolve('babel-plugin-named-asset-import'),
-                    {
-                      loaderMap: {
-                        svg: {
-                          ReactComponent:
-                            '@svgr/webpack?-svgo,+titleProp,+ref![path]',
-                        },
-                      },
-                    },
-                  ],
-                  [
-                    require.resolve("babel-plugin-module-resolver"),
-                    {
-                      root: ["./src"],
-                      alias: {
-                          assets: "./src/assets",
-                          lang: "./src/lang",
-                          api: "./src/api",
-                          basics: "./src/components/basics",
-                          enums: "./src/enums",
-                          redux: "./src/redux",
-                          styles: "./src/styles",
-                          utils: "./src/utils"
-                    }
-                }]
-                ],
+                // plugins: [
+                //   [
+                //     require.resolve('babel-plugin-named-asset-import'),
+                //     {
+                //       loaderMap: {
+                //         svg: {
+                //           ReactComponent:
+                //             '@svgr/webpack?-svgo,+titleProp,+ref![path]',
+                //         },
+                //       },
+                //     },
+                //   ]
+                // ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
                 // directory for faster rebuilds.

@@ -1,17 +1,32 @@
 {
+    "presets": [
+        "babel-preset-react-app"
+    ],
     "plugins": [
-        ["module-resolver", {
-            "root": ["./src"],
-            "alias": {
-                "assets": "./src/assets",
-                "lang": "./src/lang",
-                "api": "./src/api",
-                "basics": "./src/components/basics",
-                "enums": "./src/enums",
-                "redux": "./src/redux",
-                "styles": "./src/styles",
-                "utils": "./src/utils"
+        [
+            "module-resolver",
+            {
+                "root": ["./src"],
+                "alias": {
+                    "assets": "./src/assets",
+                    "lang": "./src/lang",
+                    "api": "./src/api",
+                    "basics": "./src/components/basics",
+                    "enums": "./src/enums",
+                    "redux": "./src/redux",
+                    "styles": "./src/styles",
+                    "utils": "./src/utils"
             }
-        }]
+        }],
+        [
+            "babel-plugin-named-asset-import",
+            {
+                "loaderMap": {
+                    "svg": {
+                        "ReactComponent": "@svgr/webpack?-svgo,+titleProp,+ref![path]",
+                    },
+                },
+            },
+        ]
     ]
-  }
+}
