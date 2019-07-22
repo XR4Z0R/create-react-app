@@ -26,11 +26,14 @@ module.exports = (resolve, rootDir, isEjecting) => {
     roots: ['<rootDir>/src'],
 
     clearMocks: true,
-    collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
+    collectCoverageFrom: [
+      'src/**/*.{js,jsx,ts,tsx}',
+      '!src/**/*.d.ts', 
+      "!src/index.{js,jsx,ts,tsx}"
+    ],
     coverageDirectory: "coverage",
     coveragePathIgnorePatterns: [
-      "/node_modules/",
-      "src/index.{js,jsx,ts,tsx}"
+      "/node_modules/"
     ],
     coverageThreshold: {
       global: {
