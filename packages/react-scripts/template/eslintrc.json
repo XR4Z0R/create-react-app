@@ -33,7 +33,19 @@
             "version": "detect"
         },
         "import/resolver": {
-            "babel-module": {}
+            "babel-module": {
+                "alias": {
+                    "@assets": "./src/assets",
+                    "@lang": "./src/lang",
+                    "#api": "./src/api",
+                    "#basics": "./src/components/basics",
+                    "#components": "./src/components",
+                    "#enums": "./src/enums",
+                    "#redux": "./src/redux",
+                    "#styles": "./src/styles",
+                    "#utils": "./src/utils"
+                }
+            }
         }
     },
     "rules": {

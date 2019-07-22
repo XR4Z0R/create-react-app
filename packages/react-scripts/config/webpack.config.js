@@ -340,29 +340,7 @@ module.exports = function(webpackEnv) {
                 cache: true,
                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                 eslintPath: require.resolve('eslint'),
-                resolvePluginsRelativeTo: __dirname,
-                // @remove-on-eject-begin
-                baseConfig: (() => {
-                  const eslintCli = new eslint.CLIEngine();
-                  let eslintConfig;
-                  try {
-                    eslintConfig = eslintCli.getConfigForFile(paths.appIndexJs);
-                  } catch (e) {
-                    // A config couldn't be found.
-                  }
-
-                  // We allow overriding the config only if the env variable is set
-                  if (process.env.EXTEND_ESLINT === 'true' && eslintConfig) {
-                    return eslintConfig;
-                  } else {
-                    return {
-                      extends: [require.resolve('eslint-config-react-app')],
-                    };
-                  }
-                })(),
-                ignore: false,
-                useEslintrc: false,
-                // @remove-on-eject-end
+                resolvePluginsRelativeTo: __dirname
               },
               loader: require.resolve('eslint-loader'),
             },
