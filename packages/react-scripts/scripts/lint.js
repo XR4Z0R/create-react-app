@@ -33,12 +33,22 @@ const verifyTypeScriptSetup = require('./utils/verifyTypeScriptSetup');
 verifyTypeScriptSetup();
 // @remove-on-eject-end
 
+
+const clearConsole = require('react-dev-utils/clearConsole');
 const CLIEngine = require('eslint').CLIEngine;
+const formatter = require('react-dev-utils/eslintFormatter');
+const chalk = require('react-dev-utils/chalk');
 
 const cli = new CLIEngine();
 
 const report = cli.executeOnFiles("src/**/*.{js,jsx}");
 
-const formatter = cli.getFormatter();
+clearConsole();
 
-console.log(formatter(report.results));
+if (report.errorCount > 0 || report.warningCount > 0) {
+  console.log(formatter(report.results));
+  console.log();
+} else {
+  console.log(chalk.green("🗸 No linting errors or warnings"));
+  console.log();
+}
