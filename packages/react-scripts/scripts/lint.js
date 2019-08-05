@@ -49,6 +49,6 @@ if (report.errorCount > 0 || report.warningCount > 0) {
   console.log(formatter(report.results));
   console.log();
 } else {
-  console.log(chalk.green("🗸 No linting errors or warnings"));
+  console.log(chalk.green("✓ No linting errors or warnings"));
   console.log();
 }

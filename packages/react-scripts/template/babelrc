@@ -15,6 +15,7 @@
                     "#components": "./src/components",
                     "#enums": "./src/enums",
                     "#redux": "./src/redux",
+                    "#routes": "./src/routes",
                     "#styles": "./src/styles",
                     "#utils": "./src/utils"
             }
