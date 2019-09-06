@@ -72,13 +72,14 @@ module.exports = (resolve, rootDir, isEjecting) => {
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
       '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
-      "^@assets(.*)$": "<rootDir>/src/assets$1",
-      "^@lang(.*)$": "<rootDir>/src/lang$1",
+      "^%assets(.*)$": "<rootDir>/src/assets$1",
+      "^%lang(.*)$": "<rootDir>/src/lang$1",
       "^#api(.*)$": "<rootDir>/src/api$1",
       "^#basics(.*)$": "<rootDir>/src/components/basics$1",
       "^#components(.*)$": "<rootDir>/src/components$1",
       "^#enums(.*)$": "<rootDir>/src/enums$1",
       "^#redux(.*)$": "<rootDir>/src/redux$1",
+      "^#routes(.*)$": "<rootDir>/src/routes$1",
       "^#styles(.*)$": "<rootDir>/src/styles$1",
       "^#utils(.*)$": "<rootDir>/src/utils$1"
     },

@@ -8,8 +8,8 @@
             {
                 "root": ["./src"],
                 "alias": {
-                    "@assets": "./src/assets",
-                    "@lang": "./src/lang",
+                    "%assets": "./src/assets",
+                    "%lang": "./src/lang",
                     "#api": "./src/api",
                     "#basics": "./src/components/basics",
                     "#components": "./src/components",
