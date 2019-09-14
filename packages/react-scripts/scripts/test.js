@@ -34,6 +34,7 @@ verifyTypeScriptSetup();
 
 const jest = require('jest');
 const execSync = require('child_process').execSync;
+const clearConsole = require('react-dev-utils/clearConsole');
 let argv = process.argv.slice(2);
 
 function isInGitRepository() {
@@ -121,4 +122,5 @@ if (!resolvedEnv) {
 const testEnvironment = resolvedEnv || env;
 argv.push('--env', testEnvironment);
 // @remove-on-eject-end
+clearConsole();
 jest.run(argv);
