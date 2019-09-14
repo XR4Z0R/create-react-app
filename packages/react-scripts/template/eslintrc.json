@@ -168,7 +168,10 @@
             "error"
         ],
         "no-magic-numbers": [
-            "error"
+            "error",
+            {
+                "ignoreArrayIndexes": true
+            }
         ],
         "no-multi-spaces": [
             "error"
@@ -447,9 +450,9 @@
             "error",
             {
                 "ObjectExpression": { "multiline": true, "minProperties": 3 },
-                "ObjectPattern": { "multiline": true },
+                "ObjectPattern": { "multiline": true, "minProperties": 3 },
                 "ImportDeclaration": { "minProperties": 4 },
-                "ExportDeclaration": "always"
+                "ExportDeclaration": { "minProperties": 2 }
             }
         ],
         "object-curly-spacing": [
@@ -1096,7 +1099,10 @@
             "error"
         ],
         "react/jsx-props-no-spreading": [
-            "error"
+            "error",
+            {
+                "custom": "ignore"
+            }
         ],
         "react/jsx-sort-default-props": [
             "error"
