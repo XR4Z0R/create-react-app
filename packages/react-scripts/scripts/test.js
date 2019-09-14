@@ -66,20 +66,6 @@ if (
 }
 
 // @remove-on-eject-begin
-// This is not necessary after eject because we embed config into package.json.
-const createJestConfig = require('./utils/createJestConfig');
-const path = require('path');
-const paths = require('../config/paths');
-argv.push(
-  '--config',
-  JSON.stringify(
-    createJestConfig(
-      relativePath => path.resolve(__dirname, '..', relativePath),
-      path.resolve(paths.appSrc, '..'),
-      false
-    )
-  )
-);
 
 // This is a very dirty workaround for https://github.com/facebook/jest/issues/5913.
 // We're trying to resolve the environment ourselves because Jest does it incorrectly.

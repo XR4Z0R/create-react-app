@@ -22,6 +22,7 @@ const spawn = require('react-dev-utils/crossSpawn');
 const { defaultBrowsers } = require('react-dev-utils/browsersHelper');
 const os = require('os');
 const verifyTypeScriptSetup = require('./utils/verifyTypeScriptSetup');
+const createJestConfig = require('./utils/createJestConfig');
 
 function isInGitRepository() {
   try {
@@ -97,16 +98,12 @@ module.exports = function(
   appPackage.scripts = {
     start: 'react-scripts start',
     build: 'react-scripts build',
-    test: 'react-scripts test',
-    "test-cov": "react-scripts test \"--coverage\"",
+    test: 'react-scripts test --verbose --watchAll=false',
+    'test-cov': 'react-scripts test --coverage --watchAll=false',
+    'test-watch': 'react-scripts test',
     lint: 'react-scripts lint',
     eject: 'react-scripts eject',
   };
-
-  // Setup the eslint config
-  // appPackage.eslintConfig = {
-  //   extends: 'react-app',
-  // };
 
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;
@@ -156,7 +153,7 @@ module.exports = function(
     }
   }
 
-  // .gitattributes
+  // Setup .gitattributes
   try {
     fs.moveSync(
       path.join(appPath, 'gitattributes'),
@@ -174,7 +171,7 @@ module.exports = function(
     }
   }
 
-  // .babelrc
+  // Setup .babelrc
   try {
     fs.moveSync(
       path.join(appPath, 'babelrc'),
@@ -192,7 +189,7 @@ module.exports = function(
     }
   }
 
-  // .eslintrc.json
+  // Setup .eslintrc.json
   try {
     fs.moveSync(
       path.join(appPath, 'eslintrc.json'),
@@ -210,7 +207,7 @@ module.exports = function(
     }
   }
 
-  // .eslintignore
+  // Setup .eslintignore
   try {
     fs.moveSync(
       path.join(appPath, 'eslintignore'),
@@ -228,6 +225,16 @@ module.exports = function(
     }
   }
 
+  // Setup jest.config.js
+  const jestConfig = createJestConfig(
+    filePath => path.posix.join('@xr4z0r/react-scripts', filePath),
+    null,
+    true
+  );
+  fs.writeFileSync(
+    path.join(appPath, 'jest.config.js'),
+    'module.exports = ' + JSON.stringify(jestConfig, null, 4) + os.EOL
+  );
 
   let command;
   let args;
@@ -239,7 +246,7 @@ module.exports = function(
     command = 'npm';
     args = ['install', '--save', verbose && '--verbose'].filter(e => e);
   }
-  args.push('react', 'react-dom', "react-test-renderer");
+  args.push('react', 'react-dom');
 
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
@@ -260,7 +267,7 @@ module.exports = function(
   // which doesn't install react and react-dom along with react-scripts
   // or template is presetend (via --internal-testing-template)
   if (!isReactInstalled(appPackage) || template) {
-    console.log(`Installing react, react-dom and react-test-renderer using ${command}...`);
+    console.log(`Installing react and react-dom using ${command}...`);
     console.log();
 
     const proc = spawn.sync(command, args, { stdio: 'inherit' });
@@ -307,8 +314,15 @@ module.exports = function(
   console.log(chalk.cyan(`  ${displayedCommand} test`));
   console.log('    Starts the test runner.');
   console.log();
-  console.log(chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}test-cov`));
+  console.log(
+    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}test-cov`)
+  );
   console.log('    Starts the test runner with code coverage.');
+  console.log();
+  console.log(
+    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}test-watch`)
+  );
+  console.log('    Starts the test runner and watches for changes.');
   console.log();
   console.log(chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}lint`));
   console.log('    Starts linting with defined ESLint rules.');
@@ -344,7 +358,6 @@ function isReactInstalled(appPackage) {
 
   return (
     typeof dependencies.react !== 'undefined' &&
-    typeof dependencies['react-dom'] !== 'undefined' &&
-    typeof dependencies["react-test-renderer"] !== "undefined"
+    typeof dependencies['react-dom'] !== 'undefined'
   );
 }
