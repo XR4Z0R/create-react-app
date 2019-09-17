@@ -72,6 +72,7 @@ if (
 // We're trying to resolve the environment ourselves because Jest does it incorrectly.
 // TODO: remove this as soon as it's fixed in Jest.
 const resolve = require('resolve');
+const path = require('path');
 function resolveJestDefaultEnvironment(name) {
   const jestDir = path.dirname(
     resolve.sync('jest', {

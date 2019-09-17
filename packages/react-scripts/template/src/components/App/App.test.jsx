@@ -1,15 +1,15 @@
 import React from "react";
-import { create } from "react-test-renderer";
+import { cleanup, render } from "@testing-library/react";
 
 import App from "./App";
 
 
-test("renders without crashing", () => {
+test("should match snapshot", () => {
 
     expect.hasAssertions();
 
-    const app = create(<App />);
+    const { asFragment } = render(<App />);
 
-    expect(app.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
 
 });
