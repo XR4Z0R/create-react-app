@@ -277,6 +277,28 @@ module.exports = function(
     }
   }
 
+  // Install devDependencies
+  // @testing-library/react, @testing-library/jest-dom
+  if (useYarn) {
+    args = ['add', '-D'];
+  } else {
+    args = ['install', '--save-dev', verbose && '--verbose'].filter(e => e);
+  }
+  args.push('@testing-library/react', '@testing-library/jest-dom');
+
+  if (!areDevDepsInstalled(appPackage)) {
+    console.log(
+      `Installing @testing-library/react and @testing-library/jest-dom as devDependencies using ${command}...`
+    );
+    console.log();
+
+    const proc = spawn.sync(command, args, { stdio: 'inherit' });
+    if (proc.status !== 0) {
+      console.error(`\`${command} ${args.join(' ')}\` failed`);
+      return;
+    }
+  }
+
   if (useTypeScript) {
     verifyTypeScriptSetup();
   }
@@ -359,5 +381,14 @@ function isReactInstalled(appPackage) {
   return (
     typeof dependencies.react !== 'undefined' &&
     typeof dependencies['react-dom'] !== 'undefined'
+  );
+}
+
+function areDevDepsInstalled(appPackage) {
+  const dependencies = appPackage.dependencies || {};
+
+  return (
+    typeof dependencies['@testing-library/react'] !== 'undefined' &&
+    typeof dependencies['@testing-library/jest-dom'] !== 'undefined'
   );
 }
