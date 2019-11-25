@@ -45,10 +45,19 @@ const report = cli.executeOnFiles("src/**/*.{js,jsx}");
 
 clearConsole();
 
-if (report.errorCount > 0 || report.warningCount > 0) {
-  console.log(formatter(report.results));
+if (process.env.DISABLE_LINT && process.env.DISABLE_LINT === "ON") {
+
+  console.log(chalk.yellow("Linter disabled. Please set environment variable DISABLE_LINT to OFF to lint your project."));
   console.log();
+
 } else {
-  console.log(chalk.green("✓ No linting errors or warnings"));
-  console.log();
+
+  if (report.errorCount > 0 || report.warningCount > 0) {
+    console.log(formatter(report.results));
+    console.log();
+  } else {
+    console.log(chalk.green("✓ No linting errors or warnings"));
+    console.log();
+  }
+
 }
